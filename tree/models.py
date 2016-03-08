@@ -4,7 +4,7 @@ from django.db import models
 class Node(models.Model):
 	name = models.TextField()
 	text = models.TextField()
-	parent = models.ManyToManyField('Node', null=True, blank=True, related_name='children')
+	parent = models.ForeignKey('Node', null=True, blank=True, related_name='children')
 
 	def __str__(self):
 		return str(self.name)

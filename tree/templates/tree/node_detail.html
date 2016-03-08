@@ -1,33 +1,53 @@
 <html>
 	<head>
-		<title>{{ node.name }}</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}});
+		</script>
+		<title>MA3 - {{ node.name }}</title>
 	</head>
 	<body>
-{% if node.parent %}
-	<ul>
-	{% for babbo in node.parent.all %}
-		<li><a href="{% url 'ShowNode' babbo.id %}">{{ babbo.name }}</a></li>
-	{% endfor %}
-	</ul>
-{% endif %}
 
-		<h1>{{ node.name }}</h1>
-		<p>{{ node.text }}</p>
+	<div class="container">
+		<div class="col-lg-1 col-md-2">
+			<nav class="bs-docs-sidebar">
+				{% if node.parent %}
+					<ul class="nav">
+						<li><a href="{% url 'ShowNode' node.parent.id %}">{{ node.parent.name }}</a></li>
+					</ul>
+				{% endif %}
+			</nav>
+		</div>
+		<div class="col-lg-11 col-md-10">
+			
+			<div class="page-header" style="text-align: center;">
+				<h1>{{ node.name }}</h1>
+			</div>
 
-{% if node.children %}
-		<ul>
-	{% for child in node.children.all %}
-			<li><a href="{% url 'ShowNode' child.id %}">{{ child.name }}</a></li>
-	{% endfor %}
-		</ul>
-{% endif %}
+			<div class="panel panel-default">
+				<div class="panel-body">
+					{{ node.text }}
+				</div>
+			</div>
 
-{% if node.links %}
-		<ul>
-	{% for link in node.links.all %}
-			<li><a href="{{ link.link }}" target="_blank">{{ link.name }}</a></li>
-	{% endfor %}
-		</ul>
-{% endif %}
+		{% if node.children %}
+			<div class="row" style="margin-bottom: 25px;">
+				{% for child in node.children.all %}
+					{% include "tree/node_inner.html" with subnode=child %}
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		{% if node.links %}
+			{% for link in node.links.all %}
+				{% include "tree/link_inner.html" with link=link %}
+			{% endfor %}
+		{% endif %}
+		</div>
+		</div>
 	</body>
 </html>
