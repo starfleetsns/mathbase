@@ -13,6 +13,7 @@ class Link(models.Model):
 	name = models.TextField()
 	description = models.TextField()
 	link = models.URLField(max_length=500)
+	added = models.DateField(auto_now_add=True)
 	nodes = models.ManyToManyField('Node', related_name='links')
 
 	def __str__(self):

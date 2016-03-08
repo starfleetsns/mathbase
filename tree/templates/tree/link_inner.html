@@ -1,6 +1,10 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><a href="{{ link.link }}" target="_blank">{{ link.name }}</a></h3>
+		<h3 class="panel-title pull-left"><a href="{{ link.link }}" target="_blank">{{ link.name }}</a></h3>
+		{% if user.is_authenticated %}
+			<a href="{% url 'admin:tree_link_change' link.id %}"><button class="btn btn-default pull-right">Modifica Link</button></a>
+		{% endif %}
+		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
 		{{ link.description }}

@@ -1,7 +1,9 @@
+{% load staticfiles %}
 <html>
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<link rel="icon" type="image/png" href="{% static 'tree/favicon.png' %}"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -12,17 +14,35 @@
 	</head>
 	<body>
 
-	<div class="container">
-		<div class="col-lg-1 col-md-2">
+	<div class="container-fluid">
+		<div class="col-lg-2 col-md-3">
 			<nav class="bs-docs-sidebar">
 				{% if node.parent %}
 					<ul class="nav">
 						<li><a href="{% url 'ShowNode' node.parent.id %}">{{ node.parent.name }}</a></li>
 					</ul>
 				{% endif %}
+				{% if user.is_authenticated %}
+					<ul class="nav">
+						<li><a href="{% url 'admin:tree_node_add' %}">Aggiungi sottonodo</a></li>
+						<li><a href="{% url 'admin:tree_node_change' node.id %}">Modifica nodo</a></li>
+						<li><a href="{% url 'admin:tree_link_add' %}">Aggiungi link</a></li>
+						<li>Logout</li>
+					</ul>
+				{% endif %}
+				{% if latest_added %}
+					<div class="hidden-sm-down">
+						<h4>Last Added</h4>
+						<ul class="nav">
+							{% for i in latest_added %}
+							<li><a href="{{ i.link }}">{{ i.name }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
 			</nav>
 		</div>
-		<div class="col-lg-11 col-md-10">
+		<div class="col-lg-10 col-md-9">
 			
 			<div class="page-header" style="text-align: center;">
 				<h1>{{ node.name }}</h1>
