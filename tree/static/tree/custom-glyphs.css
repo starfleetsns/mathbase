@@ -1,0 +1,21 @@
+// Per poter comporre glyphicons e ingrandirli e colorarli in modi vari
+// Per colorarli diversamente
+.red-glyph { color: red; }
+.blue-glyph { color: blue; }
+.black-glyph { color: black; }
+.grey-glyph { color: grey; }
+.yellow-glyph { color: yellow; }
+.green-glyph { color: green; }
+.purple-glyph { color: purple; }
+
+// Per grandezze diverse
+.small-glyph { font-size: 0.8em; }
+.normal-glyph { font-size: 1em; }
+.big-glyph { font-size: 1.2em; }
+.heading-glyph { font-size: 2em; }
+
+// Per comporli assieme
+.compose-glyph { position: relative; }
+.compose-glyph .glyphicon { position: absolute; }
+.base-glyph { top: 0.8em; left: 0em; font-size: 1em; }
+.exponent-glyph { top: 0em; left: 1em; font-size: 0.8em; }
