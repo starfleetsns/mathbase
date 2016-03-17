@@ -31,7 +31,9 @@
 					<ul class="nav">
 						<li><a href="{% url 'tree:NodeCreate' node.id %}">Aggiungi sottonodo</a></li>
 						<li><a href="{% url 'tree:NodeUpdate' node.id %}">Modifica nodo</a></li>
+						<li><a href="{% url 'tree:NodeDelete' node.id %}">Elimina nodo corrente</a></li>
 						<li><a href="{% url 'tree:LinkCreate' node.id %}">Aggiungi link</a></li>
+						<li><a href="{% url 'tree:TagCreate' node.id %}">Aggiungi un tag</a></li>
 						<li><a href="{% url 'admin:logout' %}">Logout</a></li>
 					</ul>
 				{% endif %}

@@ -1,6 +1,5 @@
-- Aggiungere sistema per gli admin di modificare i link e i nodes
+- Continuare a sviluppare il delete in modo da non eliminare definitivamente, ma da poter recuperare i dati
 - Sviluppare un po' di più il menù (ancestors, Creati / Modificati più recentemente)
-# Aggiungere favicon
 - Aggiungere sistema di tagging
 - Aggiungere Search bar (che fa riferimento ai tag)
 - Sviluppare ricerca stile page-rank (per cercare meglio, che serve sempre)

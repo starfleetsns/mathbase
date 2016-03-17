@@ -19,3 +19,5 @@
 .compose-glyph .glyphicon { position: absolute; }
 .base-glyph { top: 0.8em; left: 0em; font-size: 1em; }
 .exponent-glyph { top: 0em; left: 1em; font-size: 0.8em; }
+
+.little-margin { margin: 0.3em 0.3em; }

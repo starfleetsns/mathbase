@@ -3,7 +3,11 @@
 		<h3 class="panel-title pull-left"><a href="{{ link.link }}" target="_blank">{{ link.name }}</a></h3>
 		{% if user.is_authenticated %}
 			<a href="{% url 'tree:LinkUpdate' link.id curnode.id %}"><button class="btn btn-default pull-right">Modifica Link</button></a>
+			<a href="{% url 'tree:LinkDelete' link.id curnode.id %}"><button class="btn btn-default pull-right">Elimina Link</button></a>
 		{% endif %}
+		{% for t in link.tags.all %}
+			<span class="label label-default pull-right little-margin">{{ t.name }}</span>
+		{% endfor %}
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
