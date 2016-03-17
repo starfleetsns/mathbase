@@ -2,10 +2,17 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
 from django.forms.widgets import TextInput
 from models import Node, Link, Tag
 
-# Create your views here.
+class ListNode(ListView):
+	model = Node
+	
+	def get_queryset(self):
+		qs = super(ListNode, self).get_queryset()
+		return qs.filter(parent=None)
+
 class ShowNode(DetailView):
 	model = Node
 	

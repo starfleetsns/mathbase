@@ -1,0 +1,8 @@
+<h1>Nodes to go to</h1>
+<ul>
+{% for node in object_list %}
+	<li><a href="{% url 'tree:ShowNode' node.id %}">{{ node.name }}</a></li>
+{% empty %}
+	<li><a href="{% url 'admin:login' %}">Non ci sono nodi, loggati</a></li>		
+{% endfor %}
+</ul>

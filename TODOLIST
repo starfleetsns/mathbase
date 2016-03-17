@@ -1,5 +1,6 @@
+- Gestire l'autenticazione di chi deve scrivere
+- Implementare un sistema di ricerca sui tag
+- Modificare la posizione del menù (va messo in alto e piccolo se lo schermo è piccolo)
+- Migliorare l'usabilità delle finestre di inserimento dati
 - Continuare a sviluppare il delete in modo da non eliminare definitivamente, ma da poter recuperare i dati
-- Sviluppare un po' di più il menù (ancestors, Creati / Modificati più recentemente)
-- Aggiungere sistema di tagging
-- Aggiungere Search bar (che fa riferimento ai tag)
 - Sviluppare ricerca stile page-rank (per cercare meglio, che serve sempre)
