@@ -18,10 +18,12 @@
 	<div class="container-fluid">
 		<div class="col-lg-2 col-md-3">
 			<nav class="bs-docs-sidebar">
-				{% if node.parent %}
+				{% if ancestors %}
 					<h4>Ancestors</h4>
 					<ul class="nav">
-						<li><a href="{% url 'tree:ShowNode' node.parent.id %}">{{ node.parent.name }}</a></li>
+					{% for anode in ancestors %}
+						<li><a href="{% url 'tree:ShowNode' anode.id %}">{{ anode.name }}</a></li>
+					{% endfor %} 
 					</ul>
 				{% endif %}
 				{% if user.is_authenticated %}
@@ -29,7 +31,7 @@
 					<ul class="nav">
 						<li><a href="{% url 'tree:NodeCreate' node.id %}">Aggiungi sottonodo</a></li>
 						<li><a href="{% url 'tree:NodeUpdate' node.id %}">Modifica nodo</a></li>
-						<li><a href="{% url 'admin:tree_link_add' %}">Aggiungi link</a></li>
+						<li><a href="{% url 'tree:LinkCreate' node.id %}">Aggiungi link</a></li>
 						<li><a href="{% url 'admin:logout' %}">Logout</a></li>
 					</ul>
 				{% endif %}
@@ -67,7 +69,7 @@
 
 		{% if node.links %}
 			{% for link in node.links.all %}
-				{% include "tree/link_inner.html" with link=link %}
+				{% include "tree/link_inner.html" with link=link curnode=node %}
 			{% endfor %}
 		{% endif %}
 		</div>

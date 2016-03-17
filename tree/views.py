@@ -13,6 +13,12 @@ class ShowNode(DetailView):
 		context = super(ShowNode, self).get_context_data(**kwargs)
 		context['latest_added'] = Link.objects.order_by('-added')[:5]
 		# Ed ora prendiamo tutti i padri
+		ancestors = [];
+		thenode = self.get_object()
+		while thenode:
+			ancestors.append(thenode)
+			thenode = thenode.parent
+		context['ancestors'] = reversed(ancestors);
 		return context
 
 class NodeCreate(CreateView):
@@ -33,3 +39,24 @@ class NodeUpdate(UpdateView):
 
 	def get_success_url(self):
 		return reverse('tree:ShowNode', kwargs={'pk': self.get_object().id})
+
+
+class LinkCreate(CreateView):
+	model = Link
+	template_name_suffix = '_create_form'
+
+	def get_initial(self):
+		initial = super(LinkCreate, self).get_initial()
+		initial['nodes'] = Node.objects.filter(pk=self.kwargs.get('next'))
+		return initial
+
+	def get_success_url(self):
+		return reverse('tree:ShowNode', kwargs={'pk': self.kwargs.get('next')})
+
+class LinkUpdate(UpdateView):
+	model = Link
+	template_name_suffix = '_update_form'
+
+	def get_success_url(self):
+		return reverse('tree:ShowNode', kwargs={'pk': self.kwargs.get('next')})
+
