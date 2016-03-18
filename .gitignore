@@ -2,3 +2,6 @@
 db.sqlite3
 *~
 .__afs*
+venv
+*#
+*.save
