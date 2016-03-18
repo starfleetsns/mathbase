@@ -53,6 +53,7 @@ ROOT_URLCONF = 'mathbase.urls'
 
 WSGI_APPLICATION = 'mathbase.wsgi.application'
 
+LOGIN_REDIRECT_URL = '/tree/'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

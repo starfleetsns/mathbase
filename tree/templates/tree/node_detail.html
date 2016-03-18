@@ -34,7 +34,7 @@
 						<li><a href="{% url 'tree:NodeDelete' node.id %}">Elimina nodo corrente</a></li>
 						<li><a href="{% url 'tree:LinkCreate' node.id %}">Aggiungi link</a></li>
 						<li><a href="{% url 'tree:TagCreate' node.id %}">Aggiungi un tag</a></li>
-						<li><a href="{% url 'admin:logout' %}">Logout</a></li>
+						<li><a href="{% url 'logout' %}">Logout</a></li>
 					</ul>
 				{% endif %}
 				{% if latest_added %}
